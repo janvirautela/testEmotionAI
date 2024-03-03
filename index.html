@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EmotionAI</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./dropdown.css"> 
+  </head>
+  <body>
+    <main>
+        <h1>Hello, welcome to EmotionAI. Please select your emotion via the dropdown.</h1>  
+        <h4>*Please select one option from either Feelings or Desires. Not both.
+            <style>
+                body{
+                    text-align: center;
+                }
+            </style>
+        </h4>
+        <p2>I Am Feeling:</p2>
+        <div class="dropdown"> <!--dropdown1-->
+            <div class="select">
+                <span class="selected">Feelings</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li>Distress</li>
+                <li>Pain</li>
+                <li>Frustration</li>
+                <li>Sad</li>
+                <li>Angry</li>
+                <li>Unproductive</li>
+                <li>Hurt in relationships</li>
+            </ul>
+        </div>
+        <!--<h2> OR
+            <style>
+                body{
+                    text-align: center;
+                }
+            </style>
+        </h2> -->
+        <p2>I Want To Be More:</p2>
+        <div class="dropdown"> <!--dropdown2-->
+            <div class="select">
+                <span class="selected">Desires</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li>Confident</li>
+                <li>Resilient</li>
+                <li>Mindful</li>
+                <li>Judgement-Free</li>
+                <li>Positive</li>
+                <li>Trustworthy</li>
+                <li>Honest</li>
+                <li>Attentive</li>
+                <li>Communicative</li>
+            </ul>
+        </div>
+        <body>
+            <button>Next</button>
+        </body>
+    <!--
+        <form action=""> 
+        <input type="text" name="message" id="message"> //the message textbox    
+            <button type="submit">Next</button>
+        </form> 
+    
+        <div id="chat-log"></div> //chat log where all messages will be-->
+    </main>
+
+    <script>
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {//loop through all dropdowns 
+            const select = dropdown.querySelector('.select');
+            const caret = dropdown.querySelector('.caret');
+            const menu = dropdown.querySelector('.menu');
+            const options = dropdown.querySelectorAll('.menu li');
+            const selected = dropdown.querySelector('.selected');
+
+            select.addEventListener('click', () => { //adding click event to select element
+                select.classList.toggle('select-clicked'); 
+                caret.classList.toggle('caret-rotate'); //add rotate style to caret
+                menu.classList.toggle('menu-open'); //add open style to menu
+            });
+
+        options.forEach(option =>{ //loop through option elements
+            option.addEventListener('click', ()=> { //click listener to option element
+                selected.innerText = option.innerText; //can change selected text to other clicked inner text
+                select.classList.remove('select-clicked') 
+                caret.classList.remove('caret-rotate');
+                menu.classList.remove('menu-open');
+                options.forEach(option => {
+                    option.classList.remove('active');
+                });
+                option.classList.add('active'); //add active class to clicked option
+            });
+        });
+    });
+    </script>
+    <!---
+	<script>
+        const chatLog= document.getElementById('chat-log'); //write js, so we can interact with web server
+        const message= document.getElementById('message'); //reference id of messages
+        const form= document.querySelector('form');
+        form.addEventListener('submit', (e) =>{
+            e.preventDefault();
+            const messageText = message.value;
+            message.value = '';
+        })
+    </script> -->
+  </body>
+</html>
